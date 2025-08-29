@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "capybara:gold_capybara_fur_block"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "capybara:blocks/gold_capybara_fur_block"
+}

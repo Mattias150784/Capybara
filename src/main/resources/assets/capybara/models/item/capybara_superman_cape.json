@@ -1,0 +1,73 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "capybara:item/superman_cape",
+		"particle": "capybara:item/superman_cape"
+	},
+	"elements": [
+		{
+			"name": "body",
+			"from": [1.9, 16.9, 3.9],
+			"to": [14.1, 17.1, 21.1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 13, 9]},
+			"faces": {
+				"north": {"uv": [4.25, 4.25, 7.25, 4.25], "texture": "#0"},
+				"east": {"uv": [0, 4.25, 4.25, 4.25], "texture": "#0"},
+				"south": {"uv": [11.5, 4.25, 14.5, 4.25], "texture": "#0"},
+				"west": {"uv": [7.25, 4.25, 11.5, 4.25], "texture": "#0"},
+				"up": {"uv": [7.25, 4.25, 4.25, 0], "texture": "#0"},
+				"down": {"uv": [10.25, 0, 7.25, 4.25], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, -180, 0],
+			"translation": [0, -5, 5],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, -180, 0],
+			"translation": [0, -5, 5],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"firstperson_righthand": {
+			"rotation": [90, 0, 0],
+			"translation": [-0.25, 4.75, -4.5],
+			"scale": [0.8, 0.8, 0.8]
+		},
+		"firstperson_lefthand": {
+			"rotation": [90, 0, 0],
+			"translation": [-0.25, 4.75, -4.5],
+			"scale": [0.8, 0.8, 0.8]
+		},
+		"ground": {
+			"rotation": [90, 0, 0],
+			"translation": [0, 10, -7.25],
+			"scale": [0.8, 0.8, 0.8]
+		},
+		"gui": {
+			"rotation": [90, 0, 0],
+			"translation": [0, 4, 0],
+			"scale": [0.89, 0.87, 0.84]
+		},
+		"head": {
+			"translation": [0, -2.5, -3.75]
+		},
+		"fixed": {
+			"rotation": [90, 0.12, -180],
+			"translation": [0, 4.5, 9.75]
+		}
+	},
+	"groups": [
+		{
+			"name": "bone",
+			"origin": [8, 0, 8],
+			"color": 0,
+			"children": [0]
+		}
+	]
+}

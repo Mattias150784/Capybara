@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "capybara:block/light_brown_capybara_fur_carpet"
+    },
+    "facing=south": {
+      "model": "capybara:block/light_brown_capybara_fur_carpet",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "capybara:block/light_brown_capybara_fur_carpet",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "capybara:block/light_brown_capybara_fur_carpet",
+      "y": 90
+    }
+  }
+}

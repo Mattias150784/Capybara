@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "wool": "capybara:block/cream_capybara_fur_block"
+  }
+}

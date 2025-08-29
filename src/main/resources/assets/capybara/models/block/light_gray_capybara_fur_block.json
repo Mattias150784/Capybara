@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "capybara:block/light_gray_capybara_fur_block"
+  }
+}
