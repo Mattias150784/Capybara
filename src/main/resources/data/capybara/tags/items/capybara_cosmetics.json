@@ -1,5 +1,11 @@
 {
   "values": [
-    "capybara:capybara_top_hat"
+    "capybara:capybara_top_hat",
+    "capybara:capybara_chef_hat",
+    "capybara:capybara_witch_hat",
+    "capybara:capybara_crown",
+    "capybara:capybara_pirate_hat",
+    "capybara:capybara_plunger_head"
+
   ]
 }

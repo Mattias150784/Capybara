@@ -3,6 +3,7 @@ package net.mattias.capybara.core.item;
 
 import net.mattias.capybara.Capybara;
 import net.mattias.capybara.core.entity.ModEntities;
+//import net.mattias.capybara.core.item.custom.WitchHatItem;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -27,6 +28,21 @@ public class ModItems {
             () -> new Item(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> CAPYBARA_TOP_HAT = ITEMS.register("capybara_top_hat",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> CAPYBARA_CHEF_HAT = ITEMS.register("capybara_chef_hat",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> CAPYBARA_WITCH_HAT = ITEMS.register("capybara_witch_hat",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> CAPYBARA_CROWN = ITEMS.register("capybara_crown",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> CAPYBARA_PIRATE_HAT = ITEMS.register("capybara_pirate_hat",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> CAPYBARA_PLUNGER_HEAD = ITEMS.register("capybara_plunger_head",
             () -> new Item(new Item.Properties()));
 
 //    public static final RegistryObject<Item> CAPYBARA_SUPERMAN_CAPE = ITEMS.register("capybara_superman_cape",

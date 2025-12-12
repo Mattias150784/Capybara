@@ -4,8 +4,7 @@ import net.mattias.capybara.Capybara;
 import net.mattias.capybara.core.entity.client.CapybaraModel;
 import net.mattias.capybara.core.entity.client.ModModelLayers;
 //import net.mattias.capybara.core.entity.cosmetics.SupermanCapeModel;
-import net.mattias.capybara.core.entity.cosmetics.TopHatLayer;
-import net.mattias.capybara.core.entity.cosmetics.TopHatModel;
+import net.mattias.capybara.core.entity.cosmetics.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,6 +16,12 @@ public class ModEventBusClientEvents {
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ModModelLayers.CAPYBARA_LAYER, CapybaraModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.TOP_HAT_LAYER, TopHatModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.CHEF_HAT_LAYER, ChefHatModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.WITCH_HAT_LAYER, WitchHatModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.CROWN_LAYER, CrownModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.PIRATE_HAT_LAYER, PirateHatModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.PLUNGER_HEAD_LAYER, PlungerHeadModel::createBodyLayer);
+
 //        event.registerLayerDefinition(ModModelLayers.SUPERMAN_CAPE_LAYER, SupermanCapeModel::createBodyLayer);
 
     }

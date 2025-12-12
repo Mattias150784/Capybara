@@ -11,10 +11,10 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
-public class LegsLayer extends RenderLayer<CapybaraEntity, CapybaraModel<CapybaraEntity>> {
+public class ShearedLayer extends RenderLayer<CapybaraEntity, CapybaraModel<CapybaraEntity>> {
     private final CapybaraModel<CapybaraEntity> model;
 
-    public LegsLayer(RenderLayerParent<CapybaraEntity, CapybaraModel<CapybaraEntity>> parent) {
+    public ShearedLayer(RenderLayerParent<CapybaraEntity, CapybaraModel<CapybaraEntity>> parent) {
         super(parent);
         this.model = parent.getModel();
     }
@@ -23,13 +23,12 @@ public class LegsLayer extends RenderLayer<CapybaraEntity, CapybaraModel<Capybar
     public void render(PoseStack poseStack, MultiBufferSource bufferSource, int packedLight,
                        CapybaraEntity capybara, float limbSwing, float limbSwingAmount,
                        float partialTick, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (capybara.isInvisible()) return;
+        if (capybara.isInvisible() || !capybara.isSheared()) return;
 
-        int variant = Math.max(1, capybara.getLegsVariant());
-        ResourceLocation texture = new ResourceLocation(
-                Capybara.MOD_ID,
-                "textures/entity/capybaralegcolor/capybara_legs_" + variant + ".png"
-        );
+        int variant = capybara.getFurColor();
+
+        ResourceLocation texture = new ResourceLocation(Capybara.MOD_ID,
+                "textures/entity/capybarasheared/sheared_capybara_" + variant + ".png");
 
         VertexConsumer buffer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(texture));
         this.model.renderToBuffer(poseStack, buffer, packedLight,

@@ -4,7 +4,6 @@ import net.mattias.capybara.core.entity.custom.CapybaraEntity;
 import net.mattias.capybara.core.event.ModTags;
 import net.mattias.capybara.core.gui.ModMenuTypes;
 import net.minecraft.world.Container;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -12,7 +11,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
 public class CapybaraInventoryMenu extends AbstractContainerMenu {
-    private final SimpleContainer capybaraContainer;
+    private final Container capybaraContainer;
     public final CapybaraEntity capybara;
 
     public CapybaraInventoryMenu(int containerId, Inventory playerInventory, CapybaraEntity capybara) {
@@ -21,7 +20,7 @@ public class CapybaraInventoryMenu extends AbstractContainerMenu {
         this.capybaraContainer = capybara.getInventory();
         this.capybaraContainer.startOpen(playerInventory.player);
 
-        // Cosmetic Slot
+        // Slot 0: Cosmetic
         this.addSlot(new Slot(capybaraContainer, 0, 8, 18) {
             @Override
             public boolean mayPlace(ItemStack stack) {
@@ -31,30 +30,24 @@ public class CapybaraInventoryMenu extends AbstractContainerMenu {
             public int getMaxStackSize() { return 1; }
         });
 
-        // Armor Slot
+        // Slot 1: Armor
         this.addSlot(new Slot(capybaraContainer, 1, 8, 36) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return stack.is(ModTags.CAPYBARA_ARMOR);
             }
             @Override
-            public int getMaxStackSize() {
-                return 1; }
+            public int getMaxStackSize() { return 1; }
         });
 
-
-        this.addSlot(new Slot(capybaraContainer, 2, 8, 54) {
-            @Override
-            public boolean mayPlace(ItemStack stack) {
-                return false; }
-        });
-
+        // Player Inventory
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
-                this.addSlot(new Slot(playerInventory, j + i * 9 + 9,
-                        8 + j * 18, 102 + i * 18 - 18));
+                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
+
+        // Player Hotbar
         for (int k = 0; k < 9; ++k) {
             this.addSlot(new Slot(playerInventory, k, 8 + k * 18, 142));
         }
@@ -68,7 +61,6 @@ public class CapybaraInventoryMenu extends AbstractContainerMenu {
         if (slot != null && slot.hasItem()) {
             ItemStack stack = slot.getItem();
             result = stack.copy();
-
             int containerSize = this.capybaraContainer.getContainerSize();
 
             if (index < containerSize) {

@@ -31,14 +31,16 @@ public class CapybaraInventoryScreen extends AbstractContainerScreen<CapybaraInv
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
 
-        graphics.blit(CAPYBARA_INVENTORY_LOCATION, x, y, 0, 0, this.imageWidth, this.imageHeight);
+        // The 256, 256 at the end tells Minecraft your texture file is 256x256 pixels
+        graphics.blit(CAPYBARA_INVENTORY_LOCATION, x, y, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 
+        // Render empty slot icons if slot is empty
         if (this.menu.getSlot(0).getItem().isEmpty()) {
-            graphics.blit(CAPYBARA_INVENTORY_LOCATION, x + 7, y + 35 - 18, 18, this.imageHeight + 54, 18, 18);
+            graphics.blit(CAPYBARA_INVENTORY_LOCATION, x + 7, y + 17, 18, 166 + 54, 18, 18, 256, 256);
         }
 
         if (this.menu.getSlot(1).getItem().isEmpty()) {
-            graphics.blit(CAPYBARA_INVENTORY_LOCATION, x + 7, y + 35, 0, this.imageHeight + 54, 18, 18);
+            graphics.blit(CAPYBARA_INVENTORY_LOCATION, x + 7, y + 35, 0, 166 + 54, 18, 18, 256, 256);
         }
 
         InventoryScreen.renderEntityInInventoryFollowsMouse(

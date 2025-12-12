@@ -1,6 +1,7 @@
 package net.mattias.capybara.core.block;
 
 import net.mattias.capybara.Capybara;
+import net.mattias.capybara.core.block.custom.FurBlock;
 import net.mattias.capybara.core.block.custom.FurCarpetBlock;
 import net.mattias.capybara.core.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -8,6 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CarpetBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -19,34 +21,34 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, Capybara.MOD_ID);
 
     public static final RegistryObject<Block> CAPYBARA_FUR_BLOCK = registerBlock("capybara_fur_block",
-            () -> new Block(Block.Properties.copy(Blocks.WHITE_WOOL)));
+            () -> new FurBlock(Block.Properties.copy(Blocks.WHITE_WOOL)));
 
     public static final RegistryObject<Block> BLACK_CAPYBARA_FUR_BLOCK = registerBlock("black_capybara_fur_block",
-            () -> new Block(Block.Properties.copy(Blocks.WHITE_WOOL)));
+            () -> new FurBlock(Block.Properties.copy(Blocks.WHITE_WOOL)));
 
     public static final RegistryObject<Block> CREAM_CAPYBARA_FUR_BLOCK = registerBlock("cream_capybara_fur_block",
-            () -> new Block(Block.Properties.copy(Blocks.WHITE_WOOL)));
+            () -> new FurBlock(Block.Properties.copy(Blocks.WHITE_WOOL)));
 
     public static final RegistryObject<Block> DARK_BROWN_CAPYBARA_FUR_BLOCK = registerBlock("dark_brown_capybara_fur_block",
-            () -> new Block(Block.Properties.copy(Blocks.WHITE_WOOL)));
+            () -> new FurBlock(Block.Properties.copy(Blocks.WHITE_WOOL)));
 
     public static final RegistryObject<Block> GOLD_CAPYBARA_FUR_BLOCK = registerBlock("gold_capybara_fur_block",
-            () -> new Block(Block.Properties.copy(Blocks.WHITE_WOOL)));
+            () -> new FurBlock(Block.Properties.copy(Blocks.WHITE_WOOL)));
 
     public static final RegistryObject<Block> LIGHT_BROWN_CAPYBARA_FUR_BLOCK = registerBlock("light_brown_capybara_fur_block",
-            () -> new Block(Block.Properties.copy(Blocks.WHITE_WOOL)));
+            () -> new FurBlock(Block.Properties.copy(Blocks.WHITE_WOOL)));
 
     public static final RegistryObject<Block> GRAY_CAPYBARA_FUR_BLOCK = registerBlock("gray_capybara_fur_block",
-            () -> new Block(Block.Properties.copy(Blocks.WHITE_WOOL)));
+            () -> new FurBlock(Block.Properties.copy(Blocks.WHITE_WOOL)));
 
     public static final RegistryObject<Block> LIGHT_GRAY_CAPYBARA_FUR_BLOCK = registerBlock("light_gray_capybara_fur_block",
-            () -> new Block(Block.Properties.copy(Blocks.WHITE_WOOL)));
+            () -> new FurBlock(Block.Properties.copy(Blocks.WHITE_WOOL)));
 
     public static final RegistryObject<Block> RED_CAPYBARA_FUR_BLOCK = registerBlock("red_capybara_fur_block",
-            () -> new Block(Block.Properties.copy(Blocks.WHITE_WOOL)));
+            () -> new FurBlock(Block.Properties.copy(Blocks.WHITE_WOOL)));
 
     public static final RegistryObject<Block> WHITE_CAPYBARA_FUR_BLOCK = registerBlock("white_capybara_fur_block",
-            () -> new Block(Block.Properties.copy(Blocks.WHITE_WOOL)));
+            () -> new FurBlock(Block.Properties.copy(Blocks.WHITE_WOOL)));
 
     public static final RegistryObject<Block> CAPYBARA_FUR_CARPET = registerBlock("capybara_fur_carpet",
             () -> new FurCarpetBlock(Block.Properties.copy(Blocks.WHITE_CARPET)));

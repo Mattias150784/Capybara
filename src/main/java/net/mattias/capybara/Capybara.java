@@ -10,6 +10,7 @@ import net.mattias.capybara.core.gui.inventory.CapybaraInventoryScreen;
 import net.mattias.capybara.core.item.ModCreativeModTabs;
 import net.mattias.capybara.core.item.ModItems;
 import net.mattias.capybara.core.loot.ModLootModifiers;
+import net.mattias.capybara.core.sound.ModSounds;
 import net.mattias.capybara.core.worldgen.ModEntitySpawnPlacements;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -52,6 +53,7 @@ public class Capybara {
         ModCreativeModTabs.register(modEventBus);
         ModMenuTypes.register(modEventBus);
         ModLootModifiers.register(modEventBus);
+        ModSounds.register(modEventBus);
 
 
         modEventBus.addListener(this::commonSetup);

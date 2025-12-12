@@ -4,13 +4,11 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.mattias.capybara.Capybara;
 import net.mattias.capybara.core.entity.client.CapybaraModel;
 import net.mattias.capybara.core.entity.custom.CapybaraEntity;
-import net.mattias.capybara.core.item.ModItems;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
 
 public class TopHatLayer extends RenderLayer<CapybaraEntity, CapybaraModel<CapybaraEntity>> {
 

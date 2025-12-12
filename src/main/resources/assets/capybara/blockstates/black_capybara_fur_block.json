@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "capybara:block/black_capybara_fur_block"
+    },
+    "facing=south": {
+      "model": "capybara:block/black_capybara_fur_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "capybara:block/black_capybara_fur_block",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "capybara:block/black_capybara_fur_block",
+      "y": 90
     }
   }
 }

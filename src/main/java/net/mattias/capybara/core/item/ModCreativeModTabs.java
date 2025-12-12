@@ -23,6 +23,12 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.CAPYBARA_GOLD_ARMOR.get());
                         pOutput.accept(ModItems.CAPYBARA_DIAMOND_ARMOR.get());
                         pOutput.accept(ModItems.CAPYBARA_TOP_HAT.get());
+                        pOutput.accept(ModItems.CAPYBARA_CHEF_HAT.get());
+                        pOutput.accept(ModItems.CAPYBARA_WITCH_HAT.get());
+                        pOutput.accept(ModItems.CAPYBARA_CROWN.get());
+                        pOutput.accept(ModItems.CAPYBARA_PIRATE_HAT.get());
+                        pOutput.accept(ModItems.CAPYBARA_PLUNGER_HEAD.get());
+
 //                        pOutput.accept(ModItems.CAPYBARA_SUPERMAN_CAPE.get());
 
                         pOutput.accept(ModBlocks.CAPYBARA_FUR_BLOCK.get());

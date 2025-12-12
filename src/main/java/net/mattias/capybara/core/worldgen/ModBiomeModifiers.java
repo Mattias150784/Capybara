@@ -40,7 +40,7 @@ public class ModBiomeModifiers {
                     HolderSet.direct(biomes.getOrThrow(Biomes.SWAMP)),
                     List.of(new MobSpawnSettings.SpawnerData(
                             ModEntities.CAPYBARA.get(),
-                            5,
+                            10,
                             1,
                             3
                     ))
@@ -51,7 +51,7 @@ public class ModBiomeModifiers {
                     HolderSet.direct(biomes.getOrThrow(Biomes.MANGROVE_SWAMP)),
                     List.of(new MobSpawnSettings.SpawnerData(
                             ModEntities.CAPYBARA.get(),
-                            5,
+                            10,
                             1,
                             3
                     ))

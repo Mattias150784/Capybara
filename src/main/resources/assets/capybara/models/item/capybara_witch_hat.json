@@ -1,0 +1,120 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"parent": "block/block",
+	"textures": {
+		"0": "capybara:item/witch_hat",
+		"particle": "capybara:item/witch_hat"
+	},
+	"elements": [
+		{
+			"from": [2, 24, 3],
+			"to": [14, 25, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 24, 8]},
+			"faces": {
+				"north": {"uv": [3, 3, 6, 3.25], "texture": "#0"},
+				"east": {"uv": [0, 3, 3, 3.25], "texture": "#0"},
+				"south": {"uv": [9, 3, 12, 3.25], "texture": "#0"},
+				"west": {"uv": [6, 3, 9, 3.25], "texture": "#0"},
+				"up": {"uv": [6, 3, 3, 0], "texture": "#0"},
+				"down": {"uv": [9, 0, 6, 3], "texture": "#0"}
+			}
+		},
+		{
+			"from": [5, 25, 6],
+			"to": [11, 29, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 25, 8]},
+			"faces": {
+				"north": {"uv": [1.5, 4.75, 3, 5.75], "texture": "#0"},
+				"east": {"uv": [0, 4.75, 1.5, 5.75], "texture": "#0"},
+				"south": {"uv": [4.5, 4.75, 6, 5.75], "texture": "#0"},
+				"west": {"uv": [3, 4.75, 4.5, 5.75], "texture": "#0"},
+				"up": {"uv": [3, 4.75, 1.5, 3.25], "texture": "#0"},
+				"down": {"uv": [4.5, 3.25, 3, 4.75], "texture": "#0"}
+			}
+		},
+		{
+			"from": [6.5, 28, 7.5],
+			"to": [9.5, 32, 10.5],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [7, 29, 8]},
+			"faces": {
+				"north": {"uv": [0.75, 6.5, 1.5, 7.5], "texture": "#0"},
+				"east": {"uv": [0, 6.5, 0.75, 7.5], "texture": "#0"},
+				"south": {"uv": [2.25, 6.5, 3, 7.5], "texture": "#0"},
+				"west": {"uv": [1.5, 6.5, 2.25, 7.5], "texture": "#0"},
+				"up": {"uv": [1.5, 6.5, 0.75, 5.75], "texture": "#0"},
+				"down": {"uv": [2.25, 5.75, 1.5, 6.5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [7, 30, 9.5],
+			"to": [9, 32, 13.5],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 31, 12]},
+			"faces": {
+				"north": {"uv": [4, 6.75, 4.5, 7.25], "texture": "#0"},
+				"east": {"uv": [3, 6.75, 4, 7.25], "texture": "#0"},
+				"south": {"uv": [5.5, 6.75, 6, 7.25], "texture": "#0"},
+				"west": {"uv": [4.5, 6.75, 5.5, 7.25], "texture": "#0"},
+				"up": {"uv": [4.5, 6.75, 4, 5.75], "texture": "#0"},
+				"down": {"uv": [5, 5.75, 4.5, 6.75], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, -8.25, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, -8.25, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_righthand": {
+			"translation": [-0.75, -16, 1]
+		},
+		"firstperson_lefthand": {
+			"translation": [-0.75, -16, 1]
+		},
+		"ground": {
+			"translation": [0, -13.5, 0],
+			"scale": [0.75, 0.75, 0.75]
+		},
+		"gui": {
+			"rotation": [-180, 33.5, -180],
+			"translation": [0, -16.25, 0],
+			"scale": [0.75, 0.75, 0.75]
+		},
+		"head": {
+			"translation": [0, -9.75, -0.75]
+		},
+		"fixed": {
+			"translation": [0, -19.75, 0.5]
+		},
+		"on_shelf": {
+			"translation": [0, -3, 0]
+		}
+	},
+	"groups": [
+		{
+			"name": "Witch2",
+			"origin": [8, 15, 8],
+			"color": 0,
+			"children": [
+				{
+					"name": "body2",
+					"origin": [8, 15, 8],
+					"color": 0,
+					"children": [
+						{
+							"name": "head2",
+							"origin": [8, 19, 8],
+							"color": 0,
+							"children": [0, 1, 2, 3]
+						}
+					]
+				}
+			]
+		}
+	]
+}

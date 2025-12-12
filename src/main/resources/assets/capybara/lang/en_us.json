@@ -9,6 +9,11 @@
 
   "item.capybara.capybara_top_hat": "Capybara Top Hat",
   "item.capybara.capybara_superman_cape": "Capybara Superman Cape",
+  "item.capybara.capybara_chef_hat": "Capybara Chef Hat",
+  "item.capybara.capybara_witch_hat": "Capybara Witch Hat",
+  "item.capybara.capybara_crown": "Capybara Crown",
+  "item.capybara.capybara_pirate_hat": "Capybara Pirate Hat",
+  "item.capybara.capybara_plunger_head": "Capybara Plunger Head",
 
 
   "block.capybara.capybara_fur_block": "Capybara Fur Block",
@@ -36,5 +41,11 @@
 
   "entity.capybara.capybara": "Capybara",
 
-  "creativetab.capybara_tab": "Capybaras"
+
+  "sounds.capybara.capybara_hurt": "Capybara Hurt",
+  "sounds.capybara.capybara_death": "Capybara Death",
+  "sounds.capybara.capybara_ambient": "Capybara Ambient",
+  "sounds.capybara.capybara_ambient_2": "Capybara Ambient",
+
+"creativetab.capybara_tab": "Capybaras"
 }
