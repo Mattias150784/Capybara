@@ -31,6 +31,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Calendar;
 import java.util.UUID;
 
 public class CapybaraEntity extends TamableAnimal implements ContainerListener {
@@ -45,6 +46,9 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
     private static final EntityDataAccessor<Boolean> DATA_CROWN = SynchedEntityData.defineId(CapybaraEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> DATA_PIRATE_HAT = SynchedEntityData.defineId(CapybaraEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> DATA_PLUNGER_HEAD = SynchedEntityData.defineId(CapybaraEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> DATA_CHRISTMAS = SynchedEntityData.defineId(CapybaraEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> DATA_SANTA_HAT = SynchedEntityData.defineId(CapybaraEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> DATA_ELF_HAT = SynchedEntityData.defineId(CapybaraEntity.class, EntityDataSerializers.BOOLEAN);
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
@@ -72,6 +76,10 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
         this.entityData.define(DATA_CROWN, false);
         this.entityData.define(DATA_PIRATE_HAT, false);
         this.entityData.define(DATA_PLUNGER_HEAD, false);
+        this.entityData.define(DATA_CHRISTMAS, false);
+        this.entityData.define(DATA_SANTA_HAT, false);
+        this.entityData.define(DATA_ELF_HAT, false);
+
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -148,8 +156,30 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
         if (this.level().isClientSide) {
             boolean flag = this.isOwnedBy(player) || this.isTame()
                     || (itemstack.is(Items.SUGAR_CANE) && !this.isTame())
-                    || itemstack.is(Items.SEAGRASS);
+                    || itemstack.is(Items.SEAGRASS)
+                    || itemstack.is(Items.SHEARS);
             return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
+        }
+
+        if (itemstack.is(Items.SHEARS)
+                && !this.isSheared()
+                && !this.isBaby()) {
+
+            this.level().playSound(null, this, SoundEvents.SHEEP_SHEAR, SoundSource.PLAYERS, 1.0F, 1.0F);
+            int dropCount = 2 + this.random.nextInt(2);
+
+            ItemStack furDrop = this.isChristmasCapybara()
+                    ? new ItemStack(ModBlocks.WHITE_CAPYBARA_FUR_BLOCK.get())
+                    : this.getFurDropForColor(this.getFurColor());
+
+            for (int i = 0; i < dropCount; i++) {
+                this.spawnAtLocation(furDrop.copy());
+            }
+
+            itemstack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+            this.setSheared(true);
+            this.regrowthTime = 6000;
+            return InteractionResult.SUCCESS;
         }
 
         if (itemstack.is(Items.SUGAR_CANE)) {
@@ -197,19 +227,6 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
                 return InteractionResult.SUCCESS;
             }
 
-            if (itemstack.is(Items.SHEARS) && !this.isSheared() && !this.isBaby()) {
-                this.level().playSound(null, this, SoundEvents.SHEEP_SHEAR, SoundSource.PLAYERS, 1.0F, 1.0F);
-                int dropCount = 2 + this.random.nextInt(2);
-                ItemStack furDrop = this.getFurDropForColor(this.getFurColor());
-                for (int i = 0; i < dropCount; i++) {
-                    this.spawnAtLocation(furDrop.copy());
-                }
-                itemstack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
-                this.setSheared(true);
-                this.regrowthTime = 6000;
-                return InteractionResult.SUCCESS;
-            }
-
             this.setOrderedToSit(!this.isOrderedToSit());
             this.jumping = false;
             this.navigation.stop();
@@ -219,6 +236,7 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
 
         return super.mobInteract(player, hand);
     }
+
 
     @Override
     public void containerChanged(Container container) {
@@ -246,18 +264,24 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
         this.setCrown(cosmetic.is(ModItems.CAPYBARA_CROWN.get()));
         this.setPirateHat(cosmetic.is(ModItems.CAPYBARA_PIRATE_HAT.get()));
         this.setPlungerHead(cosmetic.is(ModItems.CAPYBARA_PLUNGER_HEAD.get()));
+        this.setSantaHat(cosmetic.is(ModItems.CAPYBARA_SANTA_HAT.get()));
+        this.setElfHat(cosmetic.is(ModItems.CAPYBARA_ELF_HAT.get()));
+
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
-        tag.putInt("FurColor", this.getFurColor());
+        if (!this.isChristmasCapybara()) {
+            tag.putInt("FurColor", this.getFurColor());
+        }
         tag.putBoolean("Sheared", this.isSheared());
         if (this.isSheared()) {
             tag.putInt("RegrowthTime", this.regrowthTime);
         }
         tag.putInt("ArmorVariant", this.getArmorVariant());
         tag.putBoolean("isSitting", this.isSitting());
+        tag.putBoolean("ChristmasCapybara", this.isChristmasCapybara());
 
         tag.putBoolean("TopHat", this.hasTopHat());
         tag.putBoolean("ChefHat", this.hasChefHat());
@@ -265,6 +289,8 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
         tag.putBoolean("Crown", this.hasCrown());
         tag.putBoolean("PirateHat", this.hasPirateHat());
         tag.putBoolean("PlungerHead", this.hasPlungerHead());
+        tag.putBoolean("SantaHat", this.hasSantaHat());
+        tag.putBoolean("ElfHat", this.hasElfHat());
 
         CompoundTag equipTag = new CompoundTag();
         for (int i = 0; i < this.inventory.getContainerSize(); i++) {
@@ -279,7 +305,18 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
-        this.setFurColor(tag.getInt("FurColor"));
+
+        if (tag.contains("ChristmasCapybara")) {
+            this.setChristmasCapybara(tag.getBoolean("ChristmasCapybara"));
+            if (this.isChristmasCapybara()) {
+                this.setFurColor(5);
+            }
+        }
+
+        if (!this.isChristmasCapybara() && tag.contains("FurColor")) {
+            this.setFurColor(tag.getInt("FurColor"));
+        }
+
         if (tag.contains("Sheared")) {
             this.setSheared(tag.getBoolean("Sheared"));
             if (this.isSheared() && tag.contains("RegrowthTime")) {
@@ -299,6 +336,8 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
         if (tag.contains("Crown")) this.setCrown(tag.getBoolean("Crown"));
         if (tag.contains("PirateHat")) this.setPirateHat(tag.getBoolean("PirateHat"));
         if (tag.contains("PlungerHead")) this.setPlungerHead(tag.getBoolean("PlungerHead"));
+        if (tag.contains("SantaHat")) this.setSantaHat(tag.getBoolean("SantaHat"));
+        if (tag.contains("ElfHat")) this.setElfHat(tag.getBoolean("ElfHat"));
 
         if (tag.contains("CapybaraInventory")) {
             CompoundTag equipTag = tag.getCompound("CapybaraInventory");
@@ -315,6 +354,7 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
     @Override
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHit) {
         super.dropCustomDeathLoot(source, looting, recentlyHit);
+
         for (int i = 0; i < this.inventory.getContainerSize(); i++) {
             ItemStack stack = this.inventory.getItem(i);
             if (!stack.isEmpty()) {
@@ -324,8 +364,12 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
 
         if (!this.isSheared()) {
             int furDropCount = 1 + this.random.nextInt(2) + looting;
+
             for (int i = 0; i < furDropCount; i++) {
-                ItemStack furDrop = this.getFurDropForColor(this.getFurColor());
+                ItemStack furDrop = this.isChristmasCapybara()
+                        ? new ItemStack(ModBlocks.WHITE_CAPYBARA_FUR_BLOCK.get())
+                        : this.getFurDropForColor(this.getFurColor());
+
                 if (!furDrop.isEmpty()) {
                     this.spawnAtLocation(furDrop);
                 }
@@ -354,13 +398,30 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
         };
     }
 
+
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel lvl, AgeableMob parent) {
         CapybaraEntity baby = ModEntities.CAPYBARA.get().create(lvl);
         if (baby != null) {
             CapybaraEntity other = (CapybaraEntity) parent;
-            baby.setFurColor(this.random.nextBoolean() ? this.getFurColor() : other.getFurColor());
+
+            boolean parentIsChristmas = this.isChristmasCapybara();
+            boolean otherParentIsChristmas = other.isChristmasCapybara();
+
+            if (parentIsChristmas && otherParentIsChristmas) {
+                baby.setChristmasCapybara(true);
+                baby.setFurColor(5);
+            } else if (parentIsChristmas || otherParentIsChristmas) {
+                baby.setChristmasCapybara(this.random.nextFloat() < 0.5F);
+                if (baby.isChristmasCapybara()) {
+                    baby.setFurColor(5);
+                }
+            } else {
+                baby.setChristmasCapybara(false);
+                baby.setFurColor(this.random.nextBoolean() ? this.getFurColor() : other.getFurColor());
+            }
+
             baby.setArmorVariant(0);
             baby.setSheared(false);
             baby.setTopHat(false);
@@ -369,6 +430,8 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
             baby.setCrown(false);
             baby.setPirateHat(false);
             baby.setPlungerHead(false);
+            baby.setSantaHat(false);
+            baby.setElfHat(false);
 
             UUID owner = this.getOwnerUUID();
             if (owner != null) {
@@ -390,10 +453,26 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
                 this.regrowthTime = tag.getInt("RegrowthTime");
             }
         }
-        if (tag != null && tag.contains("FurColor")) {
-            this.setFurColor(tag.getInt("FurColor"));
+
+        if (tag != null && tag.contains("ChristmasCapybara")) {
+            this.setChristmasCapybara(tag.getBoolean("ChristmasCapybara"));
+        } else if (reason == MobSpawnType.NATURAL || reason == MobSpawnType.SPAWNER || reason == MobSpawnType.SPAWN_EGG) {
+            Calendar calendar = Calendar.getInstance();
+            if (calendar.get(Calendar.MONTH) == Calendar.DECEMBER) {
+                if (this.random.nextFloat() < 0.25F) {
+                    this.setChristmasCapybara(true);
+                }
+            }
+        }
+
+        if (!this.isChristmasCapybara()) {
+            if (tag != null && tag.contains("FurColor")) {
+                this.setFurColor(tag.getInt("FurColor"));
+            } else {
+                this.setFurColor(this.random.nextInt(furColorMax) + 1);
+            }
         } else {
-            this.setFurColor(this.random.nextInt(furColorMax) + 1);
+            this.setFurColor(5);
         }
 
         if (tag != null) {
@@ -403,6 +482,9 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
             this.setCrown(tag.getBoolean("Crown"));
             this.setPirateHat(tag.getBoolean("PirateHat"));
             this.setPlungerHead(tag.getBoolean("PlungerHead"));
+            this.setSantaHat(tag.getBoolean("SantaHat"));
+            this.setElfHat(tag.getBoolean("ElfHat"));
+
         }
 
         if (this.isBaby()) {
@@ -489,6 +571,15 @@ public class CapybaraEntity extends TamableAnimal implements ContainerListener {
 
     public boolean hasPlungerHead() { return this.entityData.get(DATA_PLUNGER_HEAD); }
     public void setPlungerHead(boolean val) { this.entityData.set(DATA_PLUNGER_HEAD, val); }
+
+    public boolean isChristmasCapybara() { return this.entityData.get(DATA_CHRISTMAS); }
+    public void setChristmasCapybara(boolean val) { this.entityData.set(DATA_CHRISTMAS, val); }
+
+    public boolean hasSantaHat() { return this.entityData.get(DATA_SANTA_HAT); }
+    public void setSantaHat(boolean val) { this.entityData.set(DATA_SANTA_HAT, val); }
+
+    public boolean hasElfHat() { return this.entityData.get(DATA_ELF_HAT); }
+    public void setElfHat(boolean val) { this.entityData.set(DATA_ELF_HAT, val); }
 
     @Override
     public boolean isOrderedToSit() { return this.isSitting(); }

@@ -5,7 +5,9 @@
     "capybara:capybara_witch_hat",
     "capybara:capybara_crown",
     "capybara:capybara_pirate_hat",
-    "capybara:capybara_plunger_head"
+    "capybara:capybara_plunger_head",
+    "capybara:capybara_santa_hat",
+    "capybara:capybara_elf_hat"
 
   ]
 }
