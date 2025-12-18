@@ -45,6 +45,12 @@ public class ModItems {
     public static final RegistryObject<Item> CAPYBARA_PLUNGER_HEAD = ITEMS.register("capybara_plunger_head",
             () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> CAPYBARA_SANTA_HAT = ITEMS.register("capybara_santa_hat",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> CAPYBARA_ELF_HAT = ITEMS.register("capybara_elf_hat",
+            () -> new Item(new Item.Properties()));
+
 //    public static final RegistryObject<Item> CAPYBARA_SUPERMAN_CAPE = ITEMS.register("capybara_superman_cape",
 //            () -> new Item(new Item.Properties()));
 

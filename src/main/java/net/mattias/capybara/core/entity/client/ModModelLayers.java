@@ -29,6 +29,12 @@ public class ModModelLayers {
     public static final ModelLayerLocation PLUNGER_HEAD_LAYER = new ModelLayerLocation(
             new ResourceLocation(Capybara.MOD_ID, "plunger_head"), "main");
 
+    public static final ModelLayerLocation SANTA_HAT_LAYER = new ModelLayerLocation(
+            new ResourceLocation(Capybara.MOD_ID, "santa_hat"), "main");
+
+    public static final ModelLayerLocation ELF_HAT_LAYER = new ModelLayerLocation(
+            new ResourceLocation(Capybara.MOD_ID, "elf_hat"), "main");
+
 //    public static final ModelLayerLocation SUPERMAN_CAPE_LAYER = new ModelLayerLocation(
 //            new ResourceLocation(Capybara.MOD_ID, "superman_cape"), "main");
 }

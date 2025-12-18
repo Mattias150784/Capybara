@@ -48,6 +48,7 @@ public class CapybaraModel<T extends CapybaraEntity> extends HierarchicalModel<T
 		PartDefinition Body = Capybara.addOrReplaceChild("Body", CubeListBuilder.create(), PartPose.offset(-5.0F, -8.5F, 2.5F));
 
 		PartDefinition Head = Body.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(1, 30).addBox(-2.6631F, -3.5F, -8.8333F, 6.0F, 7.0F, 11.0F, new CubeDeformation(0.0F))
+				.texOffs(100, 6).addBox(-2.6631F, -9.5F, -2.8333F, 6.0F, 7.0F, 5.0F, new CubeDeformation(-0.01F))
 				.texOffs(17, 48).addBox(-2.6631F, -5.5F, 1.1667F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F))
 				.texOffs(23, 48).addBox(1.3369F, -5.5F, 1.1667F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.3369F, -6.0F, -1.8922F));
 

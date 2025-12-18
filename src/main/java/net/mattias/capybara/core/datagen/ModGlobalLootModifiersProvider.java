@@ -25,6 +25,8 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
         CosmeticLoot("capybara_crown", ModItems.CAPYBARA_CROWN.get());
         CosmeticLoot("capybara_pirate_hat", ModItems.CAPYBARA_PIRATE_HAT.get());
         CosmeticLoot("capybara_plunger_head", ModItems.CAPYBARA_PLUNGER_HEAD.get());
+        CosmeticLoot("capybara_santa_hat", ModItems.CAPYBARA_SANTA_HAT.get());
+        CosmeticLoot("capybara_elf_hat", ModItems.CAPYBARA_ELF_HAT.get());
 
 
         // Iron Capybara Armor

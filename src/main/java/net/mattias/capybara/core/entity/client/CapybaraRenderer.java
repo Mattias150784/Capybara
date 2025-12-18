@@ -37,26 +37,57 @@ public class CapybaraRenderer
         PlungerHeadModel<CapybaraEntity> plungerHeadModel =
                 new PlungerHeadModel<>(ctx.bakeLayer(ModModelLayers.PLUNGER_HEAD_LAYER));
 
+        SantaHatModel<CapybaraEntity> santaHatModel =
+                new SantaHatModel<>(ctx.bakeLayer(ModModelLayers.SANTA_HAT_LAYER));
+
+        ElfHatModel<CapybaraEntity> elfHatModel =
+                new ElfHatModel<>(ctx.bakeLayer(ModModelLayers.ELF_HAT_LAYER));
+        
         this.addLayer(new TopHatLayer(this, hatModel));
         this.addLayer(new ChefHatLayer(this, chefHatModel));
         this.addLayer(new WitchHatLayer(this, witchHatModel));
         this.addLayer(new CrownLayer(this, crownModel));
         this.addLayer(new PirateHatLayer(this, pirateHatModel));
         this.addLayer(new PlungerHeadLayer(this, plungerHeadModel));
+        this.addLayer(new SantaHatLayer(this, santaHatModel));
+        this.addLayer(new ElfHatLayer(this, elfHatModel));
+
+
+
+
     }
 
     @Override
     public ResourceLocation getTextureLocation(CapybaraEntity capy) {
-        int variant = Math.max(1, capy.getFurColor());
+        boolean isChristmasCapy = capy.isChristmasCapybara();
 
-        if (capy.isSheared()) {
+        if (capy.isSheared() && isChristmasCapy) {
             return new ResourceLocation(
                     Capybara.MOD_ID,
-                    "textures/entity/capybarasheared/sheared_capybara_" + variant + ".png");
+                    "textures/entity/capybarasheared/sheared_capybara_christmas.png"
+            );
         }
+
+        if (capy.isSheared()) {
+            int variant = Math.max(1, capy.getFurColor());
+            return new ResourceLocation(
+                    Capybara.MOD_ID,
+                    "textures/entity/capybarasheared/sheared_capybara_" + variant + ".png"
+            );
+        }
+
+        if (isChristmasCapy) {
+            return new ResourceLocation(
+                    Capybara.MOD_ID,
+                    "textures/entity/capybarafurcolor/christmas_capybara.png"
+            );
+        }
+
+        int variant = Math.max(1, capy.getFurColor());
         return new ResourceLocation(
                 Capybara.MOD_ID,
-                "textures/entity/capybarafurcolor/capybara_color_" + variant + ".png");
+                "textures/entity/capybarafurcolor/capybara_color_" + variant + ".png"
+        );
     }
 
     @Override

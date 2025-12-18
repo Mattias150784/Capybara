@@ -20,7 +20,7 @@ public class CapybaraInventoryMenu extends AbstractContainerMenu {
         this.capybaraContainer = capybara.getInventory();
         this.capybaraContainer.startOpen(playerInventory.player);
 
-        // Slot 0: Cosmetic
+        // Cosmetic Slot
         this.addSlot(new Slot(capybaraContainer, 0, 8, 18) {
             @Override
             public boolean mayPlace(ItemStack stack) {
@@ -30,7 +30,7 @@ public class CapybaraInventoryMenu extends AbstractContainerMenu {
             public int getMaxStackSize() { return 1; }
         });
 
-        // Slot 1: Armor
+        // Armr Slot
         this.addSlot(new Slot(capybaraContainer, 1, 8, 36) {
             @Override
             public boolean mayPlace(ItemStack stack) {

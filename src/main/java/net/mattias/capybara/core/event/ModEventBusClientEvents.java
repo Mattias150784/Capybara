@@ -21,6 +21,8 @@ public class ModEventBusClientEvents {
         event.registerLayerDefinition(ModModelLayers.CROWN_LAYER, CrownModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.PIRATE_HAT_LAYER, PirateHatModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.PLUNGER_HEAD_LAYER, PlungerHeadModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.SANTA_HAT_LAYER, SantaHatModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.ELF_HAT_LAYER, ElfHatModel::createBodyLayer);
 
 //        event.registerLayerDefinition(ModModelLayers.SUPERMAN_CAPE_LAYER, SupermanCapeModel::createBodyLayer);
 
